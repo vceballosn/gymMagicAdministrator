@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: gymMagicAdministrator # Set your application name here
+  datasource:
+    url: jdbc:postgresql://localhost:5432/GymMagic
+    username: postgres
+    password: '81942686' # Enclose password in quotes if it contains special characters
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      show-sql: true
+server:
+  port: 8080 # Proper indentation for 'port' under 'server'
+
+
+
+
