@@ -2,11 +2,15 @@ package com.gym.magic.administrator.entity;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,19 +23,19 @@ import lombok.Setter;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "partner")
-public class Partner {
+@Table(name = "payments")
+public class Payment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "name")
-	private String name;
-	@Column(name = "email")
-	private String email;
-	@Column(name = "phone")
-	private String phone;
-	@Column(name = "dateRecord")
-	private LocalDate dateRecord;
+	private double amount;
+	private LocalDate paymentDate;
+	private String monthPaid;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "partner_id", nullable = false)
+	@JsonBackReference
+	private Partner partner;
 
 }

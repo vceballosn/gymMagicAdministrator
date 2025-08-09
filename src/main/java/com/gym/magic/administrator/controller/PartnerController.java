@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.gym.magic.administrator.dto.PartnerDto;
 import com.gym.magic.administrator.service.PartnerService;
 
@@ -25,37 +24,40 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("api/v1/partners") // Path base para todos los endpoints de este controlador
 public class PartnerController {
-	
+
 	private final PartnerService partnerService;
-	
-	 @PostMapping
-	    public ResponseEntity<PartnerDto> createPartner(@RequestBody PartnerDto partnerDto) {
-		 PartnerDto savedPartnerDto = partnerService.create(partnerDto);
-	        return new ResponseEntity<>(savedPartnerDto, HttpStatus.CREATED);
-	    }
 
-	    @GetMapping("/{id}") // Path variable dentro de la anotación
-	    public ResponseEntity<PartnerDto> getPartnerById(@PathVariable Long id) { // Usa nombres de variables más cortos y descriptivos
-	    	PartnerDto employeeDto = partnerService.getPartnerById(id);
-	        return ResponseEntity.ok(employeeDto);
-	    }
+	@PostMapping
+	public ResponseEntity<PartnerDto> createPartner(@RequestBody PartnerDto partnerDto) {
+		PartnerDto savedPartnerDto = partnerService.create(partnerDto);
+		return new ResponseEntity<>(savedPartnerDto, HttpStatus.CREATED);
+	}
 
-	    @GetMapping
-	    public ResponseEntity<List<PartnerDto>> getAllPartner() {
-	        List<PartnerDto> employees = partnerService.getAllPartner();
-	        return ResponseEntity.ok(employees);
-	    }
+	@GetMapping("/{id}") // Path variable dentro de la anotación
+	public ResponseEntity<PartnerDto> getPartnerById(@PathVariable Long id) { // Usa nombres de variables más cortos y
+																				// descriptivos
+		PartnerDto employeeDto = partnerService.getPartnerById(id);
+		return ResponseEntity.ok(employeeDto);
+	}
 
-	    @PutMapping() // Path variable dentro de la anotación
-	    public ResponseEntity<PartnerDto> updatePartner(@RequestBody PartnerDto partnerDto) { // Usa nombres de variables más cortos y descriptivos
-	    	PartnerDto updatedEmployeeDto = partnerService.updatePartner(partnerDto);
-	        return ResponseEntity.ok(updatedEmployeeDto);
-	    }
+	@GetMapping
+	public ResponseEntity<List<PartnerDto>> getAllPartner() {
+		List<PartnerDto> employees = partnerService.getAllPartner();
+		return ResponseEntity.ok(employees);
+	}
 
-	    @DeleteMapping("/{id}") // Path variable dentro de la anotación
-	    public ResponseEntity<String> deletePartner(@PathVariable Long id) { // Usa nombres de variables más cortos y descriptivos
-	    	partnerService.deletePartner(id);
-	        return ResponseEntity.ok("Partner deleted successfully."); // Mensaje más claro
-	    }
+	@PutMapping() // Path variable dentro de la anotación
+	public ResponseEntity<PartnerDto> updatePartner(@RequestBody PartnerDto partnerDto) { // Usa nombres de variables
+																							// más cortos y descriptivos
+		PartnerDto updatedEmployeeDto = partnerService.updatePartner(partnerDto);
+		return ResponseEntity.ok(updatedEmployeeDto);
+	}
+
+	@DeleteMapping("/{id}") // Path variable dentro de la anotación
+	public ResponseEntity<String> deletePartner(@PathVariable Long id) { // Usa nombres de variables más cortos y
+																			// descriptivos
+		partnerService.deletePartner(id);
+		return ResponseEntity.ok("Partner deleted successfully."); // Mensaje más claro
+	}
 
 }
