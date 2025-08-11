@@ -1,5 +1,6 @@
 package com.gym.magic.administrator.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -29,28 +30,38 @@ public class PartnerController {
 
 	@PostMapping
 	public ResponseEntity<PartnerDto> createPartner(@RequestBody PartnerDto partnerDto) {
+		partnerDto.setDateRecord(LocalDate.now());
 		PartnerDto savedPartnerDto = partnerService.create(partnerDto);
 		return new ResponseEntity<>(savedPartnerDto, HttpStatus.CREATED);
 	}
+	
+	
+	
 
-	@GetMapping("/{id}") // Path variable dentro de la anotación
-	public ResponseEntity<PartnerDto> getPartnerById(@PathVariable Long id) { // Usa nombres de variables más cortos y
-																				// descriptivos
-		PartnerDto employeeDto = partnerService.getPartnerById(id);
-		return ResponseEntity.ok(employeeDto);
-	}
+	    // El valor de "{id}" en la URL se mapea a la variable 'id' del método.
+	    @GetMapping("/{id}")
+	    public String getProductById(@PathVariable Long id) {
+	        return "Solicitado el producto con ID: " + id;
+	    }
+
+
+	/*@GetMapping("/{id}") // Path variable dentro de la anotación
+	public ResponseEntity<PartnerDto> getPartnerById(@PathVariable Long id) { // Usa nombres de variables más cortos y																		// descriptivos
+		PartnerDto partnerDto = partnerService.getPartnerById(id);
+		return ResponseEntity.ok(partnerDto);
+	}*/
 
 	@GetMapping
 	public ResponseEntity<List<PartnerDto>> getAllPartner() {
-		List<PartnerDto> employees = partnerService.getAllPartner();
-		return ResponseEntity.ok(employees);
+		List<PartnerDto> partners = partnerService.getAllPartner();
+		return ResponseEntity.ok(partners);
 	}
 
 	@PutMapping() // Path variable dentro de la anotación
 	public ResponseEntity<PartnerDto> updatePartner(@RequestBody PartnerDto partnerDto) { // Usa nombres de variables
 																							// más cortos y descriptivos
-		PartnerDto updatedEmployeeDto = partnerService.updatePartner(partnerDto);
-		return ResponseEntity.ok(updatedEmployeeDto);
+		PartnerDto updatedPartnerDto = partnerService.updatePartner(partnerDto);
+		return ResponseEntity.ok(updatedPartnerDto);
 	}
 
 	@DeleteMapping("/{id}") // Path variable dentro de la anotación
