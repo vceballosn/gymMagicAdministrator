@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gym.magic.administrator.dto.PaymentDto;
 import com.gym.magic.administrator.service.PaymentService;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @CrossOrigin("*")
@@ -27,7 +28,7 @@ public class PaymentController {
 	private final PaymentService paymentService;
 	
 	@PostMapping
-	public ResponseEntity<PaymentDto> createPayment(@RequestBody PaymentDto paymentDto) {
+	public ResponseEntity<PaymentDto> createPayment(@Valid @RequestBody PaymentDto paymentDto) {
 		PaymentDto savedpaymentDto = paymentService.create(paymentDto);
 		return new ResponseEntity<>(savedpaymentDto, HttpStatus.CREATED);
 	}

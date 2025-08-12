@@ -19,6 +19,7 @@ import com.gym.magic.administrator.dto.PartnerDto;
 import com.gym.magic.administrator.dto.PartnerWithPaymentsDto;
 import com.gym.magic.administrator.service.PartnerService;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @CrossOrigin("*")
@@ -30,7 +31,7 @@ public class PartnerController {
 	private final PartnerService partnerService;
 
 	@PostMapping
-	public ResponseEntity<PartnerDto> createPartner(@RequestBody PartnerDto partnerDto) {
+	public ResponseEntity<PartnerDto> createPartner(@Valid @RequestBody PartnerDto partnerDto) {
 		partnerDto.setDateRecord(LocalDate.now());
 		PartnerDto savedPartnerDto = partnerService.create(partnerDto);
 		return new ResponseEntity<>(savedPartnerDto, HttpStatus.CREATED);
