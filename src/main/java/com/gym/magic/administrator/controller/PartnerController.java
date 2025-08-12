@@ -70,5 +70,18 @@ public class PartnerController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+	
+	 @GetMapping("/{id}/delinquent-status")
+	    public ResponseEntity<Boolean> getDelinquentStatus(@PathVariable Long id) {
+	        boolean isDelinquent = partnerService.isPartnerDelinquent(id);
+	        return ResponseEntity.ok(isDelinquent);
+	    }
+	 
+	 
+	 @GetMapping("/delinquent")
+	    public ResponseEntity<List<PartnerDto>> getDelinquentPartners() {
+	        List<PartnerDto> delinquentPartners = partnerService.getDelinquentPartners();
+	        return ResponseEntity.ok(delinquentPartners);
+	    }
 
 }

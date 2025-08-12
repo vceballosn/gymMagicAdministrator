@@ -20,5 +20,8 @@ public interface PartnerService {
 	void deletePartner(Long idPartner);
 	
 	 Optional<PartnerWithPaymentsDto> getPartnerWithPayments(Long id);
+	 
+	 boolean isPartnerDelinquent(Long partnerId);
+	 List<PartnerDto> getDelinquentPartners();
 
 }
