@@ -11,11 +11,7 @@ public class PaymentMapper {
 			payment.getAmount(),
 			payment.getPaymentDate(),
 			payment.getMonthPaid(),
-			// Nota: Si Partner en la entidad no es un DTO, necesitas un mapper para Partner también
-			// PaymentDto espera un PartnerDto, pero Payment.getPartner() retorna un Partner.
-			// Supongamos que ya tienes un PartnerMapper.
-			// PartnerMapper.mapToPartnerDto(payment.getPartner())
-			null // Placeholder: Corregir según tu implementación de PartnerMapper
+			payment.getPartner().getId()
 		);
 	}
 	

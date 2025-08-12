@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gym.magic.administrator.dto.PartnerDto;
+import com.gym.magic.administrator.dto.PartnerWithPaymentsDto;
 import com.gym.magic.administrator.service.PartnerService;
 
 import lombok.AllArgsConstructor;
@@ -36,20 +37,11 @@ public class PartnerController {
 	}
 	
 	
-	
-
-	    // El valor de "{id}" en la URL se mapea a la variable 'id' del método.
-	    @GetMapping("/{id}")
-	    public String getProductById(@PathVariable Long id) {
-	        return "Solicitado el producto con ID: " + id;
-	    }
-
-
-	/*@GetMapping("/{id}") // Path variable dentro de la anotación
+	@GetMapping("/{id}") // Path variable dentro de la anotación
 	public ResponseEntity<PartnerDto> getPartnerById(@PathVariable Long id) { // Usa nombres de variables más cortos y																		// descriptivos
 		PartnerDto partnerDto = partnerService.getPartnerById(id);
 		return ResponseEntity.ok(partnerDto);
-	}*/
+	}
 
 	@GetMapping
 	public ResponseEntity<List<PartnerDto>> getAllPartner() {
@@ -70,5 +62,12 @@ public class PartnerController {
 		partnerService.deletePartner(id);
 		return ResponseEntity.ok("Partner deleted successfully."); // Mensaje más claro
 	}
+	
+	@GetMapping("/{id}/with-payments") // Usa una URL descriptiva
+    public ResponseEntity<PartnerWithPaymentsDto> getPartnerWithPayments(@PathVariable Long id) {
+        return partnerService.getPartnerWithPayments(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 
 }

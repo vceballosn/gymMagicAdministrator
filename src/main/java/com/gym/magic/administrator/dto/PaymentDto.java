@@ -17,7 +17,9 @@ public class PaymentDto {
     private double amount;
     private LocalDate paymentDate;
     private String monthPaid;
-    private PartnerDto partner;
+ // Representa la relación con el ID del Partner.
+    private Long partner_id;
+   
     
 
 }

@@ -12,7 +12,7 @@ public interface PaymentService {
 
 	List<PaymentDto> getAllPayment();
 
-	PaymentDto updatePayment(PaymentDto paymentDtoUpdate);
+	PaymentDto updatePayment(Long id, PaymentDto paymentDtoUpdate);
 
 	void deletePayment(Long idPayment);
 }

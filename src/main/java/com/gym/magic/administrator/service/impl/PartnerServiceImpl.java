@@ -1,11 +1,13 @@
 package com.gym.magic.administrator.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.gym.magic.administrator.dto.PartnerDto;
+import com.gym.magic.administrator.dto.PartnerWithPaymentsDto;
 import com.gym.magic.administrator.entity.Partner;
 import com.gym.magic.administrator.exception.ResourceNotFoundException;
 import com.gym.magic.administrator.mapper.PartnerMapper;
@@ -62,5 +64,10 @@ public class PartnerServiceImpl implements PartnerService {
 		partnerRepository.deleteById(partner.getId());
 
 	}
+	
+	public Optional<PartnerWithPaymentsDto> getPartnerWithPayments(Long id) {
+        return partnerRepository.findById(id)
+                .map(PartnerMapper::mapToPartnerWithPaymentsDto);
+    }
 
 }

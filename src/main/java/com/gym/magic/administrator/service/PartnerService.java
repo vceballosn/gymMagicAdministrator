@@ -1,8 +1,11 @@
 package com.gym.magic.administrator.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.gym.magic.administrator.dto.PartnerDto;
+import com.gym.magic.administrator.dto.PartnerWithPaymentsDto;
+
 
 public interface PartnerService {
 
@@ -15,5 +18,7 @@ public interface PartnerService {
 	PartnerDto updatePartner(PartnerDto partnerUpdate);
 
 	void deletePartner(Long idPartner);
+	
+	 Optional<PartnerWithPaymentsDto> getPartnerWithPayments(Long id);
 
 }

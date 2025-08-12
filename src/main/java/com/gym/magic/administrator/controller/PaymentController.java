@@ -46,10 +46,10 @@ public class PaymentController {
 		return ResponseEntity.ok(payments);
 	}
 	
-	@PutMapping() // Path variable dentro de la anotación
-	public ResponseEntity<PaymentDto> updatePayment(@RequestBody PaymentDto paymentDto) { // Usa nombres de variables
+	@PutMapping("/{id}") // Path variable dentro de la anotación
+	public ResponseEntity<PaymentDto> updatePayment(@PathVariable Long id,@RequestBody PaymentDto paymentDto) { // Usa nombres de variables
 																							// más cortos y descriptivos
-		PaymentDto updatedPaymentDto = paymentService.updatePayment(paymentDto);
+		PaymentDto updatedPaymentDto = paymentService.updatePayment(id,paymentDto);
 		return ResponseEntity.ok(updatedPaymentDto);
 	}
 
